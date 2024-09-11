@@ -1,0 +1,79 @@
+mainmenu "BSL_LOCK Kconfig Demo"
+
+menu "锁固件配置"
+config MY_DEBUG
+    bool "启用系统日志"
+    default n
+    help
+        Will print debug information
+
+config COLOR_LOG_MODE
+    bool "开启日志颜色"
+    default n
+    help
+        Will print debug information
+
+config ENABLE_SLEEP
+    bool "启用休眠功能"
+    default n
+    help
+        Will print debug information
+
+config ENABLE_VERIFY
+    bool "启用身份验证"
+    default n
+    help
+        关闭验证时蓝牙名称更改为 BLE-TEST_BSL
+
+config ENABLE_USB_CDC_DBG
+    bool "启用 USB 日志"
+    default n
+    help
+        note ...
+
+config ENABLE_USB_CDC
+    bool "启用 USB CDC 功能"
+    default n
+    help
+        note ...
+
+config ENABLE_PROACTIVE_NOTIFY
+    bool "启用蓝牙消息主动上报功能"
+    default n
+    help
+        主动上报开锁结果
+
+config FIRMWARE_VERSION
+    string "设置固件版本号"
+    default "H02-1.0.0"
+
+# config TEST_SHOW_INT
+#     int "The show int info"
+# 	range 0 255
+#     default 123
+
+# config TEST_TOP_ENABLE
+# 	bool "Test Top Func"
+#     default n
+#     help
+#         Function Test Top
+
+# config TEST_SUB_0_ENABLE
+# 	bool "Test Sub 0 Func"
+#     default n
+#     help
+#         Function Test Sub 0
+
+# config TEST_SUB_1_ENABLE
+# 	bool "Test Sub 1 Func"
+#     default n
+#     depends on TEST_TOP_ENABLE
+#     help
+#         Function Test Sub 1
+
+# config TEST_SHOW_SUB_INT
+#     int
+#     default 456 if TEST_SUB_0_ENABLE && TEST_SUB_1_ENABLE
+#     default 123
+
+endmenu

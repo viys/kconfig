@@ -8,7 +8,7 @@ https://www.kernel.org/doc/html/latest/kbuild/kconfig-language.html
 
 https://pypi.org/project/kconfiglib/#installation-with-pip
 
-## 1.1 示例代码
+## 1.2 示例代码
 
 https://github.com/viys/kconfig
 

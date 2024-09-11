@@ -36,8 +36,8 @@ set(RElEASE_DIR "${CMAKE_SOURCE_DIR}/release")
 add_custom_target(
     menuconfig
     WORKING_DIRECTORY ${RElEASE_DIR}
-    COMMAND menuconfig ${KCONFIG_DIR}/kconfig
-    COMMAND python ${KCONFIG_DIR}/kconfig.py ${KCONFIG_DIR}/kconfig .config ${RElEASE_DIR}/${KCONFIG_CONFIG_H} ${RElEASE_DIR}/log.txt ${RElEASE_DIR}/.config
+    COMMAND menuconfig.exe ${KCONFIG_DIR}/Kconfig
+    COMMAND python ${KCONFIG_DIR}/kconfig.py ${KCONFIG_DIR}/Kconfig .config ${RElEASE_DIR}/${KCONFIG_CONFIG_H} ${RElEASE_DIR}/log.txt ${RElEASE_DIR}/.config
     COMMENT "Running menuconfig"
 )
 

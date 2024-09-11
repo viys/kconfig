@@ -1,3 +1,4 @@
 /build
 /release/.config.old
+/release/log.txt
 /.vscode

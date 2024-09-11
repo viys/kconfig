@@ -47,33 +47,4 @@ config FIRMWARE_VERSION
     string "设置固件版本号"
     default "H02-1.0.0"
 
-# config TEST_SHOW_INT
-#     int "The show int info"
-# 	range 0 255
-#     default 123
-
-# config TEST_TOP_ENABLE
-# 	bool "Test Top Func"
-#     default n
-#     help
-#         Function Test Top
-
-# config TEST_SUB_0_ENABLE
-# 	bool "Test Sub 0 Func"
-#     default n
-#     help
-#         Function Test Sub 0
-
-# config TEST_SUB_1_ENABLE
-# 	bool "Test Sub 1 Func"
-#     default n
-#     depends on TEST_TOP_ENABLE
-#     help
-#         Function Test Sub 1
-
-# config TEST_SHOW_SUB_INT
-#     int
-#     default 456 if TEST_SUB_0_ENABLE && TEST_SUB_1_ENABLE
-#     default 123
-
 endmenu

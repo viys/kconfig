@@ -85,7 +85,7 @@ pip install kconfiglib
 
 ![img](https://z1eac6eifxs.feishu.cn/space/api/box/stream/download/asynccode/?code=NDBlZDczZWJmNDlmNmU3NDc2M2Y5MDdiNmYzNTZlMjlfYWh0OGJGMTZQUUoyZWJXcXBlUW1IMHJRMjN4QmJCTG1fVG9rZW46WnNUUGJZdEpLb2NoZmt4Z0p4UGNUUXpibkFPXzE3MjYwNzU1NTY6MTcyNjA3OTE1Nl9WNA)
 
-将 python 修改为自己系统上已有的 python 版本,如 python3 
+将 python 修改为自己系统上已有的 python 版本,如 python3 (可以直接略过此步,本工程已更新中 CmakeLists.txt 在不同系统中做了预处理) 
 
 ![img](https://z1eac6eifxs.feishu.cn/space/api/box/stream/download/asynccode/?code=Y2RiMTg0ZDczODM5MTRhYjM0MzM5ZGVmNzU4NDIwYWJfdmgwdjZmamtNY0F3ZDFDRkFRckwyZnFmOTROVWZhWERfVG9rZW46V3Zjb2JhSlVTb3FLY014N2ZqTWNFRnIxbllkXzE3MjYwNzU1NTY6MTcyNjA3OTE1Nl9WNA)
 

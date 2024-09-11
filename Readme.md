@@ -56,7 +56,7 @@ make menuconfig
 make
 ```
 
-## 2.2 linux
+## 2.2 Linux
 
 ### 2.1.1 依赖
 

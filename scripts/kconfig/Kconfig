@@ -1,50 +1,107 @@
-mainmenu "BSL_LOCK Kconfig Demo"
+mainmenu "Lock firmware set"
+
+menu "快捷配置"
+
+choice
+    prompt "选择固件配置"
+    default FIRMWARE_NONE
+
+config FIRMWARE_NONE
+    bool "none"
+
+menuconfig FIRMWARE_F01
+    bool "使用 F01 固件配置"
+    select ENABLE_SLEEP
+    select ENABLE_VERIFY
+    select ENABLE_USB_CDC
+    help
+        note ...
+if FIRMWARE_F01
+config FIRMWARE_VERSION
+    string "设置固件版本号"
+    default "H01-1.0.3"
+
+endif
+
+menuconfig FIRMWARE_F02
+    bool "使用 F02 固件配置"
+    select ENABLE_SLEEP
+    select ENABLE_VERIFY
+    select ENABLE_USB_CDC
+    help
+        note ...
+
+if FIRMWARE_F02
+config FIRMWARE_VERSION
+    string "设置固件版本号"
+    default "H02-1.0.3"
+endif
+
+endchoice
+
+endmenu
 
 menu "锁固件配置"
-config MY_DEBUG
-    bool "启用系统日志"
-    default n
-    help
-        Will print debug information
+    depends on !FIRMWARE_F01 && !FIRMWARE_F02
 
-config COLOR_LOG_MODE
-    bool "开启日志颜色"
-    default n
-    help
-        Will print debug information
+config FIRMWARE_VERSION
+    string "设置固件版本号"
+    default "H02-1.0.3"
 
 config ENABLE_SLEEP
     bool "启用休眠功能"
-    default n
+    default y
     help
         Will print debug information
 
 config ENABLE_VERIFY
     bool "启用身份验证"
-    default n
+    default y
     help
         关闭验证时蓝牙名称更改为 BLE-TEST_BSL
 
-config ENABLE_USB_CDC_DBG
+menuconfig DEBUG
+    bool "启用系统日志"
+    default n
+    help
+        Will print debug information
+
+if DEBUG
+
+config DEBUG_COLOR_MODE
+    bool "开启日志颜色"
+    default y
+    help
+      Enable this option to colorize logs for easier reading.
+
+config DEBUG_LEVEL
+    hex "日志等级"
+    default 0x03
+    help
+      Enable this option to print verbose debugging information.
+
+endif
+
+menuconfig ENABLE_USB_CDC
+    bool "启用 USB CDC 功能"
+    default y
+    help
+        note ...
+
+if ENABLE_USB_CDC
+
+config ENABLE_USB_DBG
     bool "启用 USB 日志"
     default n
     help
         note ...
 
-config ENABLE_USB_CDC
-    bool "启用 USB CDC 功能"
-    default n
-    help
-        note ...
+endif
 
 config ENABLE_PROACTIVE_NOTIFY
     bool "启用蓝牙消息主动上报功能"
     default n
     help
         主动上报开锁结果
-
-config FIRMWARE_VERSION
-    string "设置固件版本号"
-    default "H02-1.0.0"
 
 endmenu

@@ -38,7 +38,7 @@ cd .\build\
 cmake -G "MinGW Makefiles" ..
 ```
 
-![img](https://z1eac6eifxs.feishu.cn/space/api/box/stream/download/asynccode/?code=ZTFhNTQ5MWI4NDdjYzM1MmU3MzA5MWNhZWFiOWI1MWZfVnRkcTQ1TThnQ1VjMWY2Z0JUcTZKTm9jVUNKRTc1QjBfVG9rZW46VHh3OWJ6aTBLb21DTjR4YUpFbmNqZzlVbmZmXzE3MjYxMjIzOTQ6MTcyNjEyNTk5NF9WNA)
+![screenshot_1.PNG](https://oss-club.rt-thread.org/uploads/20240913/f29cacf8ca2dd2bb668e5ac3ad8bc4b6.png)
 
 ### 2.1.3 打开 Kconfig
 
@@ -47,7 +47,7 @@ cmake -G "MinGW Makefiles" ..
 make menuconfig
 ```
 
-![img](https://z1eac6eifxs.feishu.cn/space/api/box/stream/download/asynccode/?code=OTMwMGUxYzJmNTMzY2M5YTM0Yjg4MThmZjc1YmJiYjdfV2tqbEhpMzJ6a3dMcjZBTDBsbmFuN1FTbzNnTXZPYzJfVG9rZW46WTMyUGI3M3psb1pNNkF4RVd4aGM3N3I2bkplXzE3MjYxMjIzOTQ6MTcyNjEyNTk5NF9WNA)
+![screenshot_image.png](https://oss-club.rt-thread.org/uploads/20240913/1904e5b606a00c55c151451b6875b1cb.png.webp)
 
 ### 2.1.4 编译
 
@@ -83,11 +83,11 @@ pip install kconfiglib
 
 ### 2.1.2 修改 CMakeListsxtxt
 
-![img](https://z1eac6eifxs.feishu.cn/space/api/box/stream/download/asynccode/?code=ZjM4ZTE1ZGU2ODEwOTlkMzU1Nzc4N2QxNGNjNmRmMzFfNXlyNGxHV0g2eVZteVZEV09teXNmdGxlT0NHOXVzNzdfVG9rZW46WnNUUGJZdEpLb2NoZmt4Z0p4UGNUUXpibkFPXzE3MjYxMjIzOTQ6MTcyNjEyNTk5NF9WNA)
+![screenshot_2.png](https://oss-club.rt-thread.org/uploads/20240913/b9d8f2579f69cb710d7a5c31153d295e.png)
 
 将 python 修改为自己系统上已有的 python 版本,如 python3  (可以直接略过此步,本工程已更新中 CmakeLists.txt 在不同系统中做了预处理)
 
-![img](https://z1eac6eifxs.feishu.cn/space/api/box/stream/download/asynccode/?code=ZDk1ZjU2OTNlZDhlNmJkY2E4Y2Q0YzA2NTBkNjM4ZTJfYkxiV1pIRjFlR0Jiazk2bTVkQ1FLRlVXaFBQQXd2akdfVG9rZW46V3Zjb2JhSlVTb3FLY014N2ZqTWNFRnIxbllkXzE3MjYxMjIzOTQ6MTcyNjEyNTk5NF9WNA)
+![screenshot_3.png](https://oss-club.rt-thread.org/uploads/20240913/ea53e6c628be30bf550b2ad654e11d0e.png)
 
 ### 2.1.3 Cmake 构建
 
@@ -105,7 +105,7 @@ cmake ..
 make menuconfig
 ```
 
-![img](https://z1eac6eifxs.feishu.cn/space/api/box/stream/download/asynccode/?code=NDYwOThkODNhNjExN2Y2MDNiYTJhOWY5NDA0N2EwMTJfTTdxejRvS1Q0UFdCa1ZmUm5GSElvVVNZUUp5dnVJaFVfVG9rZW46UWFyR2JTTkVUb2g5anB4UU5NSGMwUGVDbkNkXzE3MjYxMjIzOTQ6MTcyNjEyNTk5NF9WNA)
+![screenshot_image.png](https://oss-club.rt-thread.org/uploads/20240913/4f982b294f4bfc074bc0f40bbfb24736.png.webp)
 
 ### 2.1.5 编译
 
@@ -117,5 +117,3 @@ make
 # 3 管理脚本
 
 后期可以根据自己的系统使用脚本来实现项目的管理.
-
-原飞书链接:https://z1eac6eifxs.feishu.cn/docx/RmpzdsPoeo0qxux5I5yclfxvnob

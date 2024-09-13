@@ -24,7 +24,8 @@ if(CMAKE_HOST_WIN32)
   add_custom_target(
         menuconfig
         WORKING_DIRECTORY ${RElEASE_DIR}
-        COMMAND ${CMAKE_SOURCE_DIR}/scripts/kconfig/win-tools/mconf-idf.exe ${KCONFIG_DIR}/Kconfig
+        COMMAND menuconfig.exe ${KCONFIG_DIR}/Kconfig
+        # COMMAND ${CMAKE_SOURCE_DIR}/scripts/kconfig/win-tools/mconf-idf.exe ${KCONFIG_DIR}/Kconfig
         COMMAND python ${KCONFIG_DIR}/kconfig.py ${KCONFIG_DIR}/Kconfig .config ${RElEASE_DIR}/${KCONFIG_CONFIG_H} ${RElEASE_DIR}/log.txt ${RElEASE_DIR}/.config
         COMMENT "Running menuconfig"
     )

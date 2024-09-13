@@ -1,13 +1,15 @@
 mainmenu "Lock firmware set"
 
-menu "快捷配置"
+# menu "快捷配置"
 
 choice
-    prompt "选择固件配置"
+    prompt "版本选择"
     default FIRMWARE_NONE
 
 config FIRMWARE_NONE
-    bool "none"
+    bool "None"
+    help
+        用户自定义
 
 menuconfig FIRMWARE_F01
     bool "使用 F01 固件配置"
@@ -15,7 +17,7 @@ menuconfig FIRMWARE_F01
     select ENABLE_VERIFY
     select ENABLE_USB_CDC
     help
-        note ...
+        使用 F01 固件配置
 if FIRMWARE_F01
 config FIRMWARE_VERSION
     string "设置固件版本号"
@@ -29,7 +31,7 @@ menuconfig FIRMWARE_F02
     select ENABLE_VERIFY
     select ENABLE_USB_CDC
     help
-        note ...
+        使用 F02 固件配置
 
 if FIRMWARE_F02
 config FIRMWARE_VERSION
@@ -39,14 +41,14 @@ endif
 
 endchoice
 
-endmenu
+# endmenu
 
-menu "锁固件配置"
-    depends on !FIRMWARE_F01 && !FIRMWARE_F02
+menu "固件配置"
 
 config FIRMWARE_VERSION
     string "设置固件版本号"
     default "H02-1.0.3"
+    depends on FIRMWARE_NONE
 
 config ENABLE_SLEEP
     bool "启用休眠功能"
@@ -63,6 +65,7 @@ config ENABLE_VERIFY
 menuconfig DEBUG
     bool "启用系统日志"
     default n
+    depends on FIRMWARE_NONE
     help
         Will print debug information
 
@@ -93,6 +96,7 @@ if ENABLE_USB_CDC
 config ENABLE_USB_DBG
     bool "启用 USB 日志"
     default n
+    depends on FIRMWARE_NONE
     help
         note ...
 
@@ -101,6 +105,7 @@ endif
 config ENABLE_PROACTIVE_NOTIFY
     bool "启用蓝牙消息主动上报功能"
     default n
+    depends on FIRMWARE_NONE
     help
         主动上报开锁结果
 

@@ -80,6 +80,7 @@ config DEBUG_COLOR_MODE
 config DEBUG_LEVEL
     hex "日志等级"
     default 0x03
+    range 0x00 0x03
     help
       Enable this option to print verbose debugging information.
 

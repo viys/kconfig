@@ -2,7 +2,6 @@
 #include "my_config.h"
 int main()
 {
-    printf("BSL\n");
     printf("固件版本号: %s\n", CONFIG_FIRMWARE_VERSION);
 
 #ifdef CONFIG_ENABLE_SLEEP

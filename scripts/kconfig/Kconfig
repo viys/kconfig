@@ -11,33 +11,21 @@ config FIRMWARE_NONE
     help
         用户自定义
 
-menuconfig FIRMWARE_F01
+config FIRMWARE_F01
     bool "使用 F01 固件配置"
     select ENABLE_SLEEP
     select ENABLE_VERIFY
     select ENABLE_USB_CDC
     help
         使用 F01 固件配置
-if FIRMWARE_F01
-config FIRMWARE_VERSION
-    string "设置固件版本号"
-    default "H01-1.0.3"
 
-endif
-
-menuconfig FIRMWARE_F02
+config FIRMWARE_F02
     bool "使用 F02 固件配置"
     select ENABLE_SLEEP
     select ENABLE_VERIFY
     select ENABLE_USB_CDC
     help
         使用 F02 固件配置
-
-if FIRMWARE_F02
-config FIRMWARE_VERSION
-    string "设置固件版本号"
-    default "H02-1.0.3"
-endif
 
 endchoice
 
@@ -48,7 +36,6 @@ menu "固件配置"
 config FIRMWARE_VERSION
     string "设置固件版本号"
     default "H02-1.0.3"
-    depends on FIRMWARE_NONE
 
 config ENABLE_SLEEP
     bool "启用休眠功能"

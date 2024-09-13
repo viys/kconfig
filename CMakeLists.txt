@@ -42,11 +42,13 @@ elseif(CMAKE_HOST_UNIX)
     add_custom_target(
         menuconfig
         WORKING_DIRECTORY ${RElEASE_DIR}
-        COMMAND menuconfig.exe ${KCONFIG_DIR}/Kconfig
+        # COMMAND menuconfig.exe ${KCONFIG_DIR}/Kconfig
+        COMMAND kconfig-mconf ${KCONFIG_DIR}/Kconfig
         COMMAND python3 ${KCONFIG_DIR}/kconfig.py ${KCONFIG_DIR}/Kconfig .config ${RElEASE_DIR}/${KCONFIG_CONFIG_H} ${RElEASE_DIR}/log.txt ${RElEASE_DIR}/.config
         COMMENT "Running menuconfig"
     )
 endif()
+
 
 # add the executable
 file(GLOB_RECURSE SRC ${CMAKE_CURRENT_SOURCE_DIR}/project/app/*.c)

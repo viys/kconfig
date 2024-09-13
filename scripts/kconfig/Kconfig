@@ -1,6 +1,8 @@
 mainmenu "Firmware set"
 
-# menu "快捷配置"
+config FIRMWARE_VERSION
+    string "设置固件版本号"
+    default "H00-x.x.x"
 
 choice
     prompt "版本选择"
@@ -29,13 +31,7 @@ config FIRMWARE_F02
 
 endchoice
 
-# endmenu
-
 menu "固件配置"
-
-config FIRMWARE_VERSION
-    string "设置固件版本号"
-    default "H02-1.0.3"
 
 config ENABLE_SLEEP
     bool "启用休眠功能"
@@ -66,8 +62,8 @@ config DEBUG_COLOR_MODE
 
 config DEBUG_LEVEL
     hex "日志等级"
-    default 0x03
-    range 0x00 0x03
+    default 0x04
+    range 0x00 0x04
     help
       Enable this option to print verbose debugging information.
 

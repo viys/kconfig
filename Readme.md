@@ -1,5 +1,5 @@
 # 1 资料
-!!! BUG
+
 ## 1.1 参考文档
 
 https://www.cnblogs.com/fluidog/p/15176680.html
@@ -43,6 +43,9 @@ cmake -G "MinGW Makefiles" ..
 ### 2.1.3 打开 Kconfig
 
 ```PowerShell
+# 开启 CMakeLists.txt 文件中的 CMAKE_HOST_WIN32 menuconfig 注释可以切换 menuconfig 工具
+# kconfiglib 的 menuconfig.exe 比较容易有残影
+# mconf-idf.exe 有乱码，切换为 utf-8 编码后并使用英文菜单可以减少乱码带来的问题缺失
 # 在 build 目录下执行下面命令,即可对工程进行配置
 make menuconfig
 ```
@@ -69,16 +72,11 @@ make
 # 更新 apt
 sudo apt update
 sudo apt upgrade
-# 下载 pip
-sudo apt install python3-pip
-# 下面使用一种即可
-# 第一种:apt直接安装
+# UNIX 可供选择的 kconfig 工具也有两种
+# 第一种: 安装 kconfig-frontends (好用)
+sudo apt-get install libncurses-dev kconfig-frontends
+# 第一种: apt 直接安装 python3-kconfiglib
 sudo apt install python3-kconfiglib
-# 第二种:创建虚拟环境安装
-sudo apt install python3-venv
-python3 -m venv myenv
-source myenv/bin/activate
-pip install kconfiglib
 ```
 
 ### 2.1.2 修改 CMakeListsxtxt

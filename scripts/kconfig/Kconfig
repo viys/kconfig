@@ -43,7 +43,6 @@ config ENABLE_VERIFY
     bool "启用身份验证"
     default y
     help
-        关闭验证时蓝牙名称更改为 BLE-TEST_BSL
 
 menuconfig DEBUG
     bool "启用系统日志"

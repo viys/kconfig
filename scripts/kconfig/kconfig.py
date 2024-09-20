@@ -36,7 +36,9 @@ def main():
     print("Parsing " + args.kconfig_file)
     kconf = Kconfig(args.kconfig_file, warn_to_stderr=False,
                     suppress_traceback=True)
-
+    # 设置新的宏定义前缀
+    # kconf.config_prefix = 'CONFIG_'
+  
     if args.handwritten_input_configs:
         # Warn for assignments to undefined symbols, but only for handwritten
         # fragments, to avoid warnings-turned-errors when using an old

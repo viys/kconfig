@@ -14,6 +14,17 @@ set(KCONFIG_DIR "${CMAKE_SOURCE_DIR}/scripts/kconfig")
 set(KCONFIG_CONFIG_H "my_config.h")
 set(RElEASE_DIR "${CMAKE_SOURCE_DIR}/release")
 
+# 创建release目录（如果不存在）
+if(CMAKE_HOST_UNIX)
+    add_custom_command(
+        OUTPUT ${RElEASE_DIR}
+        COMMAND ${CMAKE_COMMAND} -E make_directory ${RElEASE_DIR}
+        COMMENT "Creating release directory"
+    )
+else()
+    file(MAKE_DIRECTORY ${RElEASE_DIR})
+endif()
+
 # 将可执行文件输出到指定路径
 # set(HOME ${CMAKE_SOURCE_DIR})
 # set(EXECUTABLE_OUTPUT_PATH ${HOME}/bin)

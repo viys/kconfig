@@ -38,7 +38,6 @@ cd .\build\
 cmake -G "MinGW Makefiles" ..
 ```
 
-![screenshot_1.PNG](https://oss-club.rt-thread.org/uploads/20240913/f29cacf8ca2dd2bb668e5ac3ad8bc4b6.png)
 
 ### 2.1.3 打开 Kconfig
 
@@ -50,7 +49,6 @@ cmake -G "MinGW Makefiles" ..
 make menuconfig
 ```
 
-![screenshot_image.png](https://oss-club.rt-thread.org/uploads/20240913/1904e5b606a00c55c151451b6875b1cb.png.webp)
 
 ### 2.1.4 编译
 
@@ -103,7 +101,6 @@ cmake ..
 make menuconfig
 ```
 
-![screenshot_image.png](https://oss-club.rt-thread.org/uploads/20240913/4f982b294f4bfc074bc0f40bbfb24736.png.webp)
 
 ### 2.1.5 编译
 

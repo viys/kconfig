@@ -56,7 +56,7 @@ elseif(CMAKE_HOST_APPLE)
         COMMAND ${CMAKE_COMMAND} -E env srctree=${CMAKE_SOURCE_DIR}
             menuconfig.exe ${KCONFIG_DIR}/Kconfig
         COMMAND ${CMAKE_COMMAND} -E env srctree=${CMAKE_SOURCE_DIR}
-            python3 ${KCONFIG_DIR}/kconfig.py --handwritten-input-configs
+            python3 ${MERGE_CONFIG} --handwritten-input-configs
             ${CMAKE_CURRENT_SOURCE_DIR}/Kconfig
             .config
             ${CMAKE_BINARY_DIR}/${KCONFIG_CONFIG_H}
@@ -74,7 +74,7 @@ elseif(CMAKE_HOST_UNIX)
         COMMAND ${CMAKE_COMMAND} -E env srctree=${CMAKE_SOURCE_DIR}
             kconfig-mconf ${KCONFIG_DIR}/Kconfig
         COMMAND ${CMAKE_COMMAND} -E env srctree=${CMAKE_SOURCE_DIR}
-            python3 ${KCONFIG_DIR}/kconfig.py --handwritten-input-configs
+            python3 ${MERGE_CONFIG} --handwritten-input-configs
             ${CMAKE_CURRENT_SOURCE_DIR}/Kconfig
             .config
             ${CMAKE_BINARY_DIR}/${KCONFIG_CONFIG_H}

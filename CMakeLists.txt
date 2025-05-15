@@ -36,8 +36,10 @@ if(CMAKE_HOST_WIN32)
   add_custom_target(
         menuconfig
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-        COMMAND menuconfig.exe ${KCONFIG_DIR}/Kconfig
-        COMMAND python ${MERGE_CONFIG} --handwritten-input-configs
+        COMMAND ${CMAKE_COMMAND} -E env srctree=${CMAKE_SOURCE_DIR}
+            menuconfig.exe ${KCONFIG_DIR}/Kconfig
+        COMMAND ${CMAKE_COMMAND} -E env srctree=${CMAKE_SOURCE_DIR}
+            python ${MERGE_CONFIG} --handwritten-input-configs
             ${KCONFIG_DIR}/Kconfig
             .config
             ${CMAKE_BINARY_DIR}/${KCONFIG_CONFIG_H}
@@ -51,8 +53,10 @@ elseif(CMAKE_HOST_APPLE)
     add_custom_target(
         menuconfig
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-        COMMAND menuconfig.exe ${KCONFIG_DIR}/Kconfig
-        COMMAND python3 ${KCONFIG_DIR}/kconfig.py --handwritten-input-configs
+        COMMAND ${CMAKE_COMMAND} -E env srctree=${CMAKE_SOURCE_DIR}
+            menuconfig.exe ${KCONFIG_DIR}/Kconfig
+        COMMAND ${CMAKE_COMMAND} -E env srctree=${CMAKE_SOURCE_DIR}
+            python3 ${KCONFIG_DIR}/kconfig.py --handwritten-input-configs
             ${CMAKE_CURRENT_SOURCE_DIR}/Kconfig
             .config
             ${CMAKE_BINARY_DIR}/${KCONFIG_CONFIG_H}
@@ -67,8 +71,10 @@ elseif(CMAKE_HOST_UNIX)
         menuconfig
         WORKING_DIRECTORY ${RElEASE_DIR}
         # COMMAND menuconfig.exe ${KCONFIG_DIR}/Kconfig
-        COMMAND kconfig-mconf ${KCONFIG_DIR}/Kconfig
-        COMMAND python3 ${KCONFIG_DIR}/kconfig.py --handwritten-input-configs
+        COMMAND ${CMAKE_COMMAND} -E env srctree=${CMAKE_SOURCE_DIR}
+            kconfig-mconf ${KCONFIG_DIR}/Kconfig
+        COMMAND ${CMAKE_COMMAND} -E env srctree=${CMAKE_SOURCE_DIR}
+            python3 ${KCONFIG_DIR}/kconfig.py --handwritten-input-configs
             ${CMAKE_CURRENT_SOURCE_DIR}/Kconfig
             .config
             ${CMAKE_BINARY_DIR}/${KCONFIG_CONFIG_H}

@@ -1,96 +1,23 @@
-mainmenu "Firmware set"
+mainmenu "Kconfig 示例主菜单"
 
-config FIRMWARE_VERSION
-    string "设置固件版本号"
-    default "H00-x.x.x"
+menu "主功能配置"
 
-choice
-    prompt "版本选择"
-    default FIRMWARE_NONE
-
-config FIRMWARE_NONE
-    bool "None"
+config APP_VERSION
+    string "应用版本号"
+    default "v1.0.0"
     help
-        用户自定义
+      输入你的应用版本，例如 v1.0.0
 
-config FIRMWARE_F01
-    bool "使用 F01 固件配置"
-    select ENABLE_SLEEP
-    select ENABLE_VERIFY
-    select ENABLE_USB_CDC
-    help
-        使用 F01 固件配置
-
-config FIRMWARE_F02
-    bool "使用 F02 固件配置"
-    select ENABLE_SLEEP
-    select ENABLE_VERIFY
-    select ENABLE_USB_CDC
-    help
-        使用 F02 固件配置
-
-endchoice
-
-menu "固件配置"
-
-config ENABLE_SLEEP
-    bool "启用休眠功能"
+config ENABLE_FEATURE
+    bool "启用主要功能"
     default y
-    help
-        Will print debug information
 
-config ENABLE_VERIFY
-    bool "启用身份验证"
+config SELECTABLE_FEATURE
+    bool "辅助功能（被 ENABLE_FEATURE 启用）"
+    depends on ENABLE_FEATURE
     default y
-    help
-        启用身份验证
-
-menuconfig DEBUG
-    bool "启用系统日志"
-    default n
-    depends on FIRMWARE_NONE
-    help
-        Will print debug information
-
-if DEBUG
-
-config DEBUG_COLOR_MODE
-    bool "开启日志颜色"
-    default y
-    help
-      Enable this option to colorize logs for easier reading.
-
-config DEBUG_LEVEL
-    hex "日志等级"
-    default 0x04
-    range 0x00 0x04
-    help
-      Enable this option to print verbose debugging information.
-
-endif
-
-menuconfig ENABLE_USB_CDC
-    bool "启用 USB CDC 功能"
-    default y
-    help
-        note ...
-
-if ENABLE_USB_CDC
-
-config ENABLE_USB_DBG
-    bool "启用 USB 日志"
-    default n
-    depends on FIRMWARE_NONE
-    help
-        note ...
-
-endif
-
-config ENABLE_PROACTIVE_NOTIFY
-    bool "启用蓝牙消息主动上报功能"
-    default n
-    depends on FIRMWARE_NONE
-    help
-        主动上报开锁结果
-
+    
 endmenu
+
+source "$srctree/project/sub.kconfig"
+

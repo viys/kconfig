@@ -20,4 +20,3 @@ config SELECTABLE_FEATURE
 endmenu
 
 source "project/sub.kconfig"
-

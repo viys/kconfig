@@ -79,11 +79,7 @@ sudo apt install python3-kconfiglib
 
 ### 2.1.2 修改 CMakeListsxtxt
 
-![screenshot_2.png](https://oss-club.rt-thread.org/uploads/20240913/b9d8f2579f69cb710d7a5c31153d295e.png)
-
 将 python 修改为自己系统上已有的 python 版本,如 python3  (可以直接略过此步,本工程已更新中 CmakeLists.txt 在不同系统中做了预处理)
-
-![screenshot_3.png](https://oss-club.rt-thread.org/uploads/20240913/ea53e6c628be30bf550b2ad654e11d0e.png)
 
 ### 2.1.3 Cmake 构建
 

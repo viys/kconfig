@@ -1,52 +1,64 @@
 cmake_minimum_required(VERSION 3.15)
 
-#c99
-set(CMAKE_C_FLAGS "-std=c99")
+set(KCONFIG_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
+set(MERGE_CONFIG "${CMAKE_SOURCE_DIR}/scripts/kconfig/merge_config.py")
+set(KCONFIG_CONFIG_H "my_config.h")
 
-# set the project name
-set (PROJECT_NAME "demo")
+set (PROJECT_NAME "tamplate")
 project(${PROJECT_NAME})
 
-#scripts
-set(KCONFIG_DIR "${CMAKE_SOURCE_DIR}/scripts/kconfig")
+set(CMAKE_C_STANDARD 99)
+set(CMAKE_CXX_STANDARD 11)
 
-#release
-set(KCONFIG_CONFIG_H "my_config.h")
-set(RElEASE_DIR "${CMAKE_SOURCE_DIR}/release")
+file(GLOB_RECURSE SOURCES
+    ${CMAKE_CURRENT_SOURCE_DIR}/project/app/main.c
+)
 
-# 创建release目录（如果不存在）
-if(CMAKE_HOST_UNIX)
-    add_custom_command(
-        OUTPUT ${RElEASE_DIR}
-        COMMAND ${CMAKE_COMMAND} -E make_directory ${RElEASE_DIR}
-        COMMENT "Creating release directory"
-    )
-else()
-    file(MAKE_DIRECTORY ${RElEASE_DIR})
-endif()
+add_executable(${PROJECT_NAME} ${SOURCES})
 
-# 将可执行文件输出到指定路径
-# set(HOME ${CMAKE_SOURCE_DIR})
-# set(EXECUTABLE_OUTPUT_PATH ${HOME}/bin)
+target_include_directories(${PROJECT_NAME} PRIVATE
+    ${CMAKE_BINARY_DIR}
+)
+
+target_compile_options(${PROJECT_NAME} PRIVATE
+    -O2
+)
+
+target_compile_definitions(${PROJECT_NAME} PRIVATE
+)
+
+target_link_options(${PROJECT_NAME} PRIVATE
+)
 
 # 添加一个自定义目标来运行 menuconfig
 if(CMAKE_HOST_WIN32)
   # Windows
   add_custom_target(
         menuconfig
-        WORKING_DIRECTORY ${RElEASE_DIR}
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
         COMMAND menuconfig.exe ${KCONFIG_DIR}/Kconfig
-        # COMMAND ${CMAKE_SOURCE_DIR}/scripts/kconfig/win-tools/mconf-idf.exe ${KCONFIG_DIR}/Kconfig
-        COMMAND python ${KCONFIG_DIR}/kconfig.py ${KCONFIG_DIR}/Kconfig .config ${RElEASE_DIR}/${KCONFIG_CONFIG_H} ${RElEASE_DIR}/log.txt ${RElEASE_DIR}/.config
+        COMMAND python ${MERGE_CONFIG} --handwritten-input-configs
+            ${KCONFIG_DIR}/Kconfig
+            .config
+            ${CMAKE_BINARY_DIR}/${KCONFIG_CONFIG_H}
+            ${CMAKE_BINARY_DIR}/kconfig_files.txt
+            ${CMAKE_BINARY_DIR}/.config
+            ${CMAKE_CURRENT_SOURCE_DIR}/prj.config
         COMMENT "Running menuconfig"
     )
 elseif(CMAKE_HOST_APPLE)
     # macOS
     add_custom_target(
         menuconfig
-        WORKING_DIRECTORY ${RElEASE_DIR}
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
         COMMAND menuconfig.exe ${KCONFIG_DIR}/Kconfig
-        COMMAND python3 ${KCONFIG_DIR}/kconfig.py ${KCONFIG_DIR}/Kconfig .config ${RElEASE_DIR}/${KCONFIG_CONFIG_H} ${RElEASE_DIR}/log.txt ${RElEASE_DIR}/.config
+        COMMAND python3 ${KCONFIG_DIR}/kconfig.py --handwritten-input-configs
+            ${CMAKE_CURRENT_SOURCE_DIR}/Kconfig
+            .config
+            ${CMAKE_BINARY_DIR}/${KCONFIG_CONFIG_H}
+            ${CMAKE_BINARY_DIR}/kconfig_files.txt
+            ${CMAKE_BINARY_DIR}/.config
+            ${CMAKE_CURRENT_SOURCE_DIR}/prj.config
         COMMENT "Running menuconfig"
     )
 elseif(CMAKE_HOST_UNIX)
@@ -56,15 +68,18 @@ elseif(CMAKE_HOST_UNIX)
         WORKING_DIRECTORY ${RElEASE_DIR}
         # COMMAND menuconfig.exe ${KCONFIG_DIR}/Kconfig
         COMMAND kconfig-mconf ${KCONFIG_DIR}/Kconfig
-        COMMAND python3 ${KCONFIG_DIR}/kconfig.py ${KCONFIG_DIR}/Kconfig .config ${RElEASE_DIR}/${KCONFIG_CONFIG_H} ${RElEASE_DIR}/log.txt ${RElEASE_DIR}/.config
+        COMMAND python3 ${KCONFIG_DIR}/kconfig.py --handwritten-input-configs
+            ${CMAKE_CURRENT_SOURCE_DIR}/Kconfig
+            .config
+            ${CMAKE_BINARY_DIR}/${KCONFIG_CONFIG_H}
+            ${CMAKE_BINARY_DIR}/kconfig_files.txt
+            ${CMAKE_BINARY_DIR}/.config
+            ${CMAKE_CURRENT_SOURCE_DIR}/prj.config
         COMMENT "Running menuconfig"
     )
 endif()
 
-
-# add the executable
-file(GLOB_RECURSE SRC ${CMAKE_CURRENT_SOURCE_DIR}/project/app/*.c)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/app/bsp)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/release)
-
-add_executable(${PROJECT_NAME} ${SRC})
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+    COMMAND size.exe --format=berkeley $<TARGET_FILE:${PROJECT_NAME}>
+    COMMAND size.exe --format=berkeley $<TARGET_FILE:${PROJECT_NAME}> > ${CMAKE_BINARY_DIR}/${PROJECT_NAME}.size
+)

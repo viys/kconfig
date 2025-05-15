@@ -19,5 +19,5 @@ config SELECTABLE_FEATURE
     
 endmenu
 
-source "$srctree/project/sub.kconfig"
+source "project/sub.kconfig"
 

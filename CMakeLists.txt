@@ -70,7 +70,6 @@ elseif(CMAKE_HOST_UNIX)
     add_custom_target(
         menuconfig
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-        # COMMAND menuconfig.exe ${KCONFIG_DIR}/Kconfig
         COMMAND ${CMAKE_COMMAND} -E env srctree=${CMAKE_SOURCE_DIR}
             kconfig-mconf ${KCONFIG_DIR}/Kconfig
         COMMAND ${CMAKE_COMMAND} -E env srctree=${CMAKE_SOURCE_DIR}

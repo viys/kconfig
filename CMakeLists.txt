@@ -69,13 +69,13 @@ elseif(CMAKE_HOST_UNIX)
     # UNIX
     add_custom_target(
         menuconfig
-        WORKING_DIRECTORY ${RElEASE_DIR}
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
         # COMMAND menuconfig.exe ${KCONFIG_DIR}/Kconfig
         COMMAND ${CMAKE_COMMAND} -E env srctree=${CMAKE_SOURCE_DIR}
             kconfig-mconf ${KCONFIG_DIR}/Kconfig
         COMMAND ${CMAKE_COMMAND} -E env srctree=${CMAKE_SOURCE_DIR}
             python3 ${MERGE_CONFIG} --handwritten-input-configs
-            ${CMAKE_CURRENT_SOURCE_DIR}/Kconfig
+            ${KCONFIG_DIR}/Kconfig
             .config
             ${CMAKE_BINARY_DIR}/${KCONFIG_CONFIG_H}
             ${CMAKE_BINARY_DIR}/kconfig_files.txt
